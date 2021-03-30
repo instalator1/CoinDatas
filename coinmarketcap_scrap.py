@@ -5,7 +5,7 @@ import pandas as pd
 
 ''' Obróbka strony coinmarketcap top coins należy uaktualnic link aby pobrac wlasciwą datę'''
 
-url = 'https://coinmarketcap.com/historical/20210321/'
+url = 'https://coinmarketcap.com/historical/20210328/'
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 table = soup.find_all('table')[-1] # w ostatniej tabelce są interesujace nas dane

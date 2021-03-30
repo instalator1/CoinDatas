@@ -4,7 +4,7 @@ from pathlib import Path
 import datetime as dt
 
 # parametry
-folder = 'Top_from_21_03_2021'
+folder = 'Top_from_28_03_2021'
 end_date = int(dt.datetime.timestamp(dt.datetime.now()))  # dzisiejsza data
 
 coin_list = [coin.lower().replace(' ', '-').replace('.', '-') for coin in coin_list]
@@ -59,7 +59,12 @@ dic = {'xrp': 'ripple',
        'travala-com': 'concierge-io',
        'rsk-infrastructure-framework': 'rif-token',
        'wootrade': 'wootrade-network',
-       'chromia': 'chromaway'}
+       'chromia': 'chromaway',
+       'klaytn': 'klay-token',
+       'sharetoken': 'sharering',
+       'irisnet': 'iris-network',
+       'syntropy': 'noia-network',
+       'trueusd': 'true-usd'}
 
 coin_list = [dic.get(coin, coin) for coin in coin_list]
 dead_coins = []
@@ -73,6 +78,7 @@ class GQ(GeckoQuotes):
 
 
 if __name__ == '__main__':
+
     cnt = 0
     for coin in coin_list:
 
@@ -83,8 +89,12 @@ if __name__ == '__main__':
             try:
                 alt = GQ(coin)
                 alt.quotes_to_csv()
-            except ValueError as e:
+
+            except ValueError as valerr:
                 cnt += 1
                 dead_coins.append(coin)
                 coin_list.remove(coin)
-                print(f'{e} not downloaded symbols ({coin}): {cnt}')
+                print(f'{valerr} not downloaded symbols ({coin}): {cnt}')
+
+
+
